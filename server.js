@@ -21,18 +21,19 @@ app.use(express.json()); // Allows parsing of JSON request body
 
 // CORS configuration (Allows frontend to talk to backend)
 const allowedOrigins = [process.env.CLIENT_URL]; 
+// CORS configuration (Allows frontend to talk to backend)
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: [
+    "http://localhost:5173",
+    process.env.CLIENT_URL,
+    "https://sba-grant-portal.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 
 // --- API Routes ---
 app.use('/api/auth', authRoutes);

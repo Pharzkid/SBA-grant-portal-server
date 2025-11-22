@@ -42,7 +42,7 @@ router.get(
     protect,
     asyncHandler(async (req, res) => {
         // Fetch the configuration set by the admin
-        const config = await Config.findOne({ key: 'withdrawalMessage' });
+        const config = await Config.findOne({ key: 'global_withdrawal_message' });
 
         const defaultMessage = "withdrawal not possible right, 2.5% Fee not confirmed yet contact us or continue with your agent.";
 
